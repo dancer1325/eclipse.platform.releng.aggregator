@@ -10,3 +10,6 @@ workspace/
 RemoteSystemsTempFiles/
 /apiAnalyzer-workspace/
 eclipse.platform.common/bundles/org.eclipse.platform.doc.isv/samples/*/doc-html
+
+# IDE
+/.idea/*
