@@ -7,6 +7,10 @@ Aggregator repo -- for -- Eclipse SDK builds
     * Java development tooling
     * Plug-in development tooling
 
+Documentation
+------------------
+* [here](eclipse.platform.common/index.md)
+
 Requirements to build
 ------------------
 
