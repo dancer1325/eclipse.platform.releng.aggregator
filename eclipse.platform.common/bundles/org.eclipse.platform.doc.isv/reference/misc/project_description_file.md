@@ -82,7 +82,7 @@
     * == names of the natures | this project
     * == `IProjectDescription.getNatureIds()`
   * `nature`
-    * == name of a single natures | this project
+    * == name of 1! nature | this project
 * 
   ```
   <linkedResources>
