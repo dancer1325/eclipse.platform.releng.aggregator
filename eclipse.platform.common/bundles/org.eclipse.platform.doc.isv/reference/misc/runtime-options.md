@@ -8,186 +8,180 @@
   * System property settings' form
 
 ## CL Arguments
-* TODO:
-* <p>Listed below are the command line arguments processed by various parts of
-  the Eclipse runtime. Many of these values can also be specified using System
-  properties either on the command line using -D VM arguments, by specifying
-  their values in a config.ini file or by using a &lt;launcher&gt;.ini file.
-  Using the two latter techniques it is possible to customize your Eclipse without
-  using command line arguments at all.</p>
-<p>For each argument in the list, its corresponding System property key is given
-  (in {}). Also given is the Eclipse runtime layer in which the command line
-  argument is processed (in ()). This is useful for people replacing parts of
-  the runtime to suit special needs.</p>
-<dl>
-  <dt>-application &lt;id&gt; (Runtime)</dt>
-  <dd>equivalent to setting  <a href="#eclipseapplication">eclipse.application</a>
-    to &lt;id&gt;</dd>
-  <dt>-arch &lt;architecture&gt; (OSGi) </dt>
-  <dd>equivalent to setting <a href="#osgiarch">osgi.arch</a> to &lt;architecture&gt;</dd>
-  <dt>-clean (OSGi) </dt>
-  <dd>equivalent to setting <a href="#osgiclean">osgi.clean</a> to &quot;true&quot;</dd>
-  <dt>-clearPersistedState (E4)</dt>
-  <dd>Removes any cached state of the user interface and reloads the model</dd>
-  <dt>-configuration &lt;location&gt;   (Main)</dt>
-  <dd>equivalent to setting <a href="#osgiconfigurationarea">osgi.configuration.area</a>
-    to &lt;location&gt;</dd>
-  <dt>-console [[host:]port] (OSGi) </dt>
-  <dd>equivalent to setting <a href="#osgiconsole">osgi.console</a> to [[host:]port].</dd>
-  <dt>-consoleLog (Runtime)</dt>
-  <dd>equivalent to setting <a href="#eclipseconsolelog">eclipse.consoleLog</a> to
-    &quot;true&quot;</dd>
-  <dt>-data &lt;location&gt;    (OSGi)<br>
-  </dt>
-  <dd>equivalent to setting <a href="#osgiinstancearea">osgi.instance.area</a>
-    to &lt;location&gt;</dd>
-  <dt>-debug [options file] (OSGi)</dt>
-  <dd> equivalent to setting <a href="#osgidebug">osgi.debug</a> to [options
-    file] or the empty string to simply enable debug (i.e., if the options file
-    location is not specified)</dd>
-  <dt>-dev [entries] (OSGi)</dt>
-  <dd>equivalent to setting <a href="#osgidev">osgi.dev</a> to [entries] or
-    the empty string to simply enable dev mode (i.e., if entries are not specified)</dd>
-  <dt><a name="eclipsekeyring"></a>-eclipse.keyring &lt;file path&gt;    (Equinox)</dt>
-  <dd>Set to override the location of the default secure storage.
-    If specified, this parameter takes precedence over setting the
-    <a href="#env.eclipsekeyring"><code>ECLIPSE_KEYRING</code></a> environment variable.</dd>
-  <dt>-eclipse.password &lt;file path&gt;    (Equinox)</dt>
-  <dd>If specified, the secure storage treats contents of the file as a default password.
-    When not set, password providers are used to obtain a password.</dd>
-  <dt>-feature &lt;feature id&gt;    (Runtime)</dt>
-  <dd>equivalent to setting  <a href="#eclipseproduct">eclipse.product</a>
-    to &lt;feature id&gt;</dd>
-  <dt>-framework &lt;location&gt; (Main) </dt>
-  <dd>equivalent to setting  <a href="#o.pngramework">osgi.framework</a> to
-    &lt;location&gt;</dd>
-  <dt>-initialize (Main)</dt>
-  <dd>initializes the configuration being run. All runtime related data structures
-    and caches are refreshed. Any user/plug-in defined configuration data is
-    not purged. No application is run, any product specifications are ignored
-    and no UI is presented (e.g., the splash screen is not drawn)</dd>
-  <dt>-install &lt;location&gt; (Main)</dt>
-  <dd>equivalent to setting  <a href="#osgiinstallarea">osgi.install.area</a> to
-    &lt;location&gt;</dd>
-  <dt><a name="launcherdefaultaction" id="launcherdefaultaction"></a>--launcher.defaultAction &lt;option&gt; (Executable)</dt>
-  <dd>specifies the default action to take when the launcher is started without
-  any &quot;-&quot; arguments on the command line.  Currently the only supported
-  value is &quot;openFile&quot;.  The &quot;openFile&quot; option tells the
-  launcher that if it is called with a command line that only contains arguments
-  that do not start with &quot;-&quot;, then those arguments should be treated as if they
-  followed &quot;--launcher.openFile&quot;.
-  <pre>  eclipse myFile.txt</pre>
-  This is the kind of command line the launcher will receive on windows when you double click a
-  file that is associated with eclipse, or you select and choose &quot;Open With&quot; or
-  &quot;Send To&quot; Eclipse.
-  </dd>
+* 👀-- are processed by -- various parts of the Eclipse runtime 👀
+* ALTERNATIVES to it
+  * system properties | CL -- via -- -D VM arguments
+    * argument == {systemProperty}
+  * "config.ini" file
+  * "<launcher>.ini" file
 
-  <dt><a name="launcheropenfile" id="launcheropenfile"></a>--launcher.openFile &lt;space separated list of files&gt; (Executable)</dt>
-  <dd>a space separated list of files to pass to the application.  This option is
-  typically used to pass a list of files to be opened by an Eclipse application.
-  This option requires SWT in order to fire the necessary SWT_OPENDOC event for
-  the files that are specified.  Relative paths will be resolved first against the current
-  working directory, and second against the eclipse program directory.</dd>
-  <dt>--launcher.library &lt;location&gt; (Executable)</dt>
-  <dd>the location of the eclipse executable's companion shared
+* `-application <id> (Runtime)`
+  * == `eclipse.application <id>`
+* `-arch <architecture> (OSGi)` 
+  * == `osgi.arch <architecture>`
+* `-clean (OSGi)` 
+  * == `osgi.clean "true"`
+* -clearPersistedState (E4)
+  * Removes any cached state of the user interface and reloads the model</dd>
+* -configuration <location>   (Main)
+  * == <a href="#osgiconfigurationarea">osgi.configuration.area</a>
+      to <location></dd>
+* -console [[host:]port] (OSGi) 
+  * == <a href="#osgiconsole">osgi.console</a> to [[host:]port].</dd>
+* -consoleLog (Runtime)
+  * == <a href="#eclipseconsolelog">eclipse.consoleLog</a> to
+      &quot;true&quot;</dd>
+* -data <location>    (OSGi)<br>
+  
+  * == <a href="#osgiinstancearea">osgi.instance.area</a>
+      to <location></dd>
+* -debug [options file] (OSGi)
+  *  == <a href="#osgidebug">osgi.debug</a> to [options
+      file] or the empty string to simply enable debug (i.e., if the options file
+      location is not specified)</dd>
+* -dev [entries] (OSGi)
+  * == <a href="#osgidev">osgi.dev</a> to [entries] or
+      the empty string to simply enable dev mode (i.e., if entries are not specified)</dd>
+    <a name="eclipsekeyring"></a>-eclipse.keyring <file path>    (Equinox)
+  * Set to override the location of the default secure storage.
+      If specified, this parameter takes precedence over setting the
+      <a href="#env.eclipsekeyring"><code>ECLIPSE_KEYRING</code></a> environment variable.</dd>
+* -eclipse.password <file path>    (Equinox)
+  * If specified, the secure storage treats contents of the file as a default password.
+      When not set, password providers are used to obtain a password.</dd>
+* -feature <feature id>    (Runtime)
+  * ==  <a href="#eclipseproduct">eclipse.product</a>
+      to <feature id></dd>
+* -framework <location> (Main) 
+  * ==  <a href="#o.pngramework">osgi.framework</a> to
+      <location></dd>
+* -initialize (Main)
+  * initializes the configuration being run. All runtime related data structures
+      and caches are refreshed. Any user/plug-in defined configuration data is
+      not purged. No application is run, any product specifications are ignored
+      and no UI is presented (e.g., the splash screen is not drawn)</dd>
+* -install <location> (Main)
+  * ==  <a href="#osgiinstallarea">osgi.install.area</a> to
+      <location></dd>
+    <a name="launcherdefaultaction" id="launcherdefaultaction"></a>--launcher.defaultAction <option> (Executable)
+  * specifies the default action to take when the launcher is started without
+    any &quot;-&quot; arguments on the command line.  Currently the only supported
+    value is &quot;openFile&quot;.  The &quot;openFile&quot; option tells the
+    launcher that if it is called with a command line that only contains arguments
+    that do not start with &quot;-&quot;, then those arguments should be treated as if they
+    followed &quot;--launcher.openFile&quot;.
+    <pre>  eclipse myFile.txt</pre>
+    This is the kind of command line the launcher will receive on windows when you double click a
+    file that is associated with eclipse, or you select and choose &quot;Open With&quot; or
+    &quot;Send To&quot; Eclipse.
+    </dd>
+
+    <a name="launcheropenfile" id="launcheropenfile"></a>--launcher.openFile <space separated list of files> (Executable)
+  * a space separated list of files to pass to the application.  This option is
+    typically used to pass a list of files to be opened by an Eclipse application.
+    This option requires SWT in order to fire the necessary SWT_OPENDOC event for
+    the files that are specified.  Relative paths will be resolved first against the current
+    working directory, and second against the eclipse program directory.</dd>
+    --launcher.library <location> (Executable)
+  * the location of the eclipse executable's companion shared
 library.&nbsp; If not specified the executable looks in the plugins
 directory for the appropriate org.eclipse.equinox.launcher.[platform]
 fragment with the highest version and uses the shared library named
 eclipse_* inside.</dd>
-  <dt>--launcher.ini &lt;location&gt; (Executable)</dt>
+  --launcher.ini <location> (Executable)
   <dd>the location of the product .ini file to use.&nbsp; If not
 specified the executable will look for a file beside the launcher with
 the same name and the extension .ini.&nbsp; (i.e. eclipse.exe looks for
 eclipse.ini, product.exe looks for product.ini)</dd>
-  <dt>--launcher.suppressErrors (Executable)</dt>
+  --launcher.suppressErrors (Executable)
   <dd>If specified the executable will not display any error or message
 dialogs.&nbsp; This is useful if the executable is being used in an
 unattended situation.</dd>
-  <dt>--launcher.noRestart (Executable)</dt>
+  --launcher.noRestart (Executable)
   <dd>If specified, the special handling of exit codes 23 (restart) and 24
 (relaunch) is disabled and they are treated as regular exit codes. This can be
 useful for non-IDE/command-line applications.</dd>
-  <dt>--launcher.secondThread (Executable)&nbsp; <span
- style="font-style: italic;">MACOSX ONLY</span></dt>
+  --launcher.secondThread (Executable)&nbsp; <span
+ style="font-style: italic;">MACOSX ONLY</span>
   <dd>If specified the executable will create the Java VM on a
 secondary thread.&nbsp; This should used if a swing application is
 being run. <span style="font-weight: bold;">SWT will NOT work</span>
 if this option is specified.</dd>
-  <dt><a name="launchertimeout" id="launchertimeout"></a>--launcher.timeout &lt;value&gt; (Executable)</dt>
+  <a name="launchertimeout" id="launchertimeout"></a>--launcher.timeout <value> (Executable)
   <dd>a timeout value for how long the launcher should spend trying to
   communicate with an already running eclipse before the launcher gives up and
   launches a new eclipse instance. Default is 60 (seconds).
   </dd>
-  <dt>--launcher.XXMaxPermSize &lt;value&gt; (Executable)</dt>
+  --launcher.XXMaxPermSize <value> (Executable)
   <dd>If specified, and the executable detects that the VM being used
 is a Sun VM, then the launcher will automatically add the
--XX:MaxPermSize=&lt;value&gt; vm argument.&nbsp; The executable is not
+-XX:MaxPermSize=<value> vm argument.&nbsp; The executable is not
 capable of detecting Sun VMs on all platforms.<br>
   </dd>
-  <dt>--launcher.appendVmargs (Executable)</dt>
+  --launcher.appendVmargs (Executable)
   <dd>If specified, any VM arguments on the commandline will be appended
   to any VM arguments specified in the launcher .ini file.
   <span style="font-weight: bold;">Using this option is recommended</span>
   in every launcher .ini file that specifies VM arguments, because the
   default behavior of overriding VM arguments can have unexpected side-effects.</dd>
-  <dt>--launcher.overrideVmargs (Executable)</dt>
+  --launcher.overrideVmargs (Executable)
   <dd>If specified on the commandline, overrides the effect of
   --launcher.appendVmargs in a launcher .ini file such that none
   of the VM arguments in the .ini file are considered as soon as
   a -vmargs option is detected on the commandline.</dd>
-  <dt>-name &lt;string&gt;</dt>
+  -name <string>
   <dd>The name to be displayed in the task bar item for the splash screen when the application starts up (not applicable on Windows).
   Also used as the title of error dialogs opened by the launcher.  When not set, the name is the name of the executable.</dd>
-  <dt>-nl &lt;locale&gt; (OSGi)</dt>
-  <dd>equivalent to setting <a href="#osginl">osgi.nl</a> to &lt;locale&gt;</dd>
-  <dt>-nlExtensions &lt;nlExtensions&gt; (OSGi)</dt>
-  <dd>indicates NL extensions and is equivalent to setting
-    <a href="#osginlextensions">osgi.nl.extensions</a> to &lt;nlExtensions&gt;</dd>
-  <dt>-noExit (OSGi)</dt>
-  <dd>equivalent to setting <a href="#osginoshutdown">osgi.noShutdown</a> to &quot;true&quot;</dd>
-  <dt>-noLazyRegistryCacheLoading (Runtime) </dt>
-  <dd>equivalent to setting <a href="#eclipsenolazyregistrycacheloading">eclipse.noLazyRegistryCacheLoading</a>
+  -nl <locale> (OSGi)
+  <dd>== <a href="#osginl">osgi.nl</a> to <locale></dd>
+  -nlExtensions <nlExtensions> (OSGi)
+  <dd>indicates NL extensions and is ==
+    <a href="#osginlextensions">osgi.nl.extensions</a> to <nlExtensions></dd>
+  -noExit (OSGi)
+  <dd>== <a href="#osginoshutdown">osgi.noShutdown</a> to &quot;true&quot;</dd>
+  -noLazyRegistryCacheLoading (Runtime) 
+  <dd>== <a href="#eclipsenolazyregistrycacheloading">eclipse.noLazyRegistryCacheLoading</a>
     to &quot;true&quot;</dd>
-  <dt>-noRegistryCache
-    (Runtime) </dt>
-  <dd>equivalent to setting  <a href="#eclipsenoregistrycache">eclipse.noRegistryCache</a>
+  -noRegistryCache
+    (Runtime) 
+  <dd>==  <a href="#eclipsenoregistrycache">eclipse.noRegistryCache</a>
   to &quot;true&quot;</dd>
-  <dt>-noSplash (Executable, Main)</dt>
+  -noSplash (Executable, Main)
   <dd>controls whether or not the splash screen is shown</dd>
-  <dt>-os &lt;operating system&gt; (OSGi) </dt>
-  <dd>equivalent to setting  <a href="#osgios">osgi.os</a> to &lt;operating system&gt;</dd>
-  <dt> -pluginCustomization &lt;location&gt; (Runtime) </dt>
-  <dd>equivalent to setting <a href="#eclipseplugincustomization">eclipse.pluginCustomization</a> to
-  &lt;location&gt;</dd>
-  <dt> -product &lt;id&gt; (OSGi) </dt>
-  <dd>equivalent to setting  <a href="#eclipseproduct">eclipse.product</a> to
-  &lt;id&gt;</dd>
-  <dt>-protect [root, master] (Executable, Main) </dt>
+  -os <operating system> (OSGi) 
+  <dd>==  <a href="#osgios">osgi.os</a> to <operating system></dd>
+   -pluginCustomization <location> (Runtime) 
+  <dd>== <a href="#eclipseplugincustomization">eclipse.pluginCustomization</a> to
+  <location></dd>
+   -product <id> (OSGi) 
+  <dd>==  <a href="#eclipseproduct">eclipse.product</a> to
+  <id></dd>
+  -protect [root, master] (Executable, Main) 
   <dd>setting the value to "root" prevents Eclipse from being started
   as a root user, either directly or via programs that run with administrative privileges like 'sudo'.
   This option is currently implemented only on Linux/UNIX based platforms. "master" can be used to
   prevent starting of the master instance in a shared install configuration. This option can be used
   on all platforms supported by Eclipse.</dd>
-  <dt> -registryMultiLanguage  (Runtime) </dt>
-  <dd>equivalent to setting <a href="#registrymultilang">eclipse.registry.MultiLanguage</a> to
+   -registryMultiLanguage  (Runtime) 
+  <dd>== <a href="#registrymultilang">eclipse.registry.MultiLanguage</a> to
   &quot;true&quot;</dd>
-  <dt>-showSplash &lt;bitmap&gt; (Executable, Main)
-  </dt>
+  -showSplash <bitmap> (Executable, Main)
+  
   <dd>specifies the bitmap to use in the splash screen. If specified,
 the launcher may be able to show the splash screen before starting the
 Java VM.&nbsp; If not specified, Main will find the bitmap using the
 osgi.splashLocation and osgi.splashPath properties.<br>
   </dd>
-  <dt>-startup &lt;location&gt; (Executable)</dt>
+  -startup <location> (Executable)
   <dd>The location of jar used to startup eclipse. The jar referred to
 should have the Main-Class attribute set to
 org.eclipse.equinox.launcher.Main. If this parameter is not set, the
 executable will look in the plugins directory for
 theorg.eclipse.equinox.launcher bundle with the highest version.<br>
   </dd>
-  <dt>-user &lt;location&gt; (OSGi) </dt>
-  <dd>equivalent to setting <a href="#osgiuserarea">osgi.user.area</a> to &lt;location&gt;</dd>
-  <dt>-vm &lt;path to java vm&gt; (Executable, Main) </dt>
+  -user <location> (OSGi) 
+  <dd>== <a href="#osgiuserarea">osgi.user.area</a> to <location></dd>
+  -vm <path to java vm> (Executable, Main) 
   <dd>when passed to the Eclipse executable, this option is used to
 locate the Java VM to use to run Eclipse. It should be the full file
 system path to an appropriate: Java jre/bin directory, Java Executable,
@@ -197,8 +191,8 @@ the Eclipse executable uses a search algorithm to locate a suitable VM.
 In any event, the executable then passes the path to the actual VM used
 to Java Main using the -vm argument. Java Main then stores this value
 in <a href="#eclipsevm">eclipse.vm</a>.</dd>
-  <dt>-vmargs [vmargs*] (Executable,
-    Main) </dt>
+  -vmargs [vmargs*] (Executable,
+    Main) 
   <dd>when passed to the Eclipse, this option is used to customize the operation
     of the Java VM to use to run Eclipse. If
     specified, this option must come at the end of the command line. Even if
@@ -206,15 +200,15 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
     add the relevant arguments (including the class being launched) to the command
     line passed into Java using the -vmargs argument.
     Java Main then stores this value in <a href="#eclipsevmargs">eclipse.vmargs</a>.</dd>
-  <dt>-ws &lt;window system&gt; (OSGi) </dt>
-  <dd>equivalent to setting  <a href="#osgiws">osgi.ws</a> to &lt;window system&gt;</dd>
+  -ws <window system> (OSGi) 
+  <dd>==  <a href="#osgiws">osgi.ws</a> to <window system></dd>
 </dl>
 <h3>Bidirectional Support</h3>
 <dl>
-  <dt>-dir &lt;dir&gt;</dt>
-  <dd>indicates the orientation of the workbench and is equivalent to setting
-    <a href="#eclipseorientation">eclipse.orientation</a> to &lt;dir&gt;.</dd>
-  <dt>-bidi &lt;value&gt;</dt>
+  -dir <dir>
+  <dd>indicates the orientation of the workbench and is ==
+    <a href="#eclipseorientation">eclipse.orientation</a> to <dir>.</dd>
+  -bidi <value>
   <dd>Indicates the default base text direction and whether special bidi processing
     should be enabled.</dd>
   <dd>Valid arguments are <b>&quot;on=[y|n];textDir=[ltr|rtl|auto]&quot;,</b>.</dd>
@@ -225,44 +219,44 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
   and are consumed by the runtime and not passed on to the application being
   run to maintain backward compatibility. .</p>
 <dl>
-  <dt> -boot</dt>
+   -boot
   <dd>see -configuration</dd>
-  <dt>-classLoaderProperties</dt>
+  -classLoaderProperties
   <dd>no longer relevant</dd>
-  <dt>-endSplash &lt;command&gt; <br>
-  </dt>
+  -endSplash <command> <br>
+  
   <dd>no longer relevant<br>
   </dd>
-  <dt>-firstUse</dt>
+  -firstUse
   <dd>no longer relevant</dd>
-  <dt>-newUpdates</dt>
+  -newUpdates
   <dd>no longer relevant</dd>
-  <dt>-noPackagePrefixes</dt>
+  -noPackagePrefixes
   <dd>no longer relevant</dd>
-  <dt>-noUpdate</dt>
+  -noUpdate
   <dd>no longer relevant</dd>
-  <dt>-plugins</dt>
+  -plugins
   <dd>no longer relevant</dd>
-  <dt>-update</dt>
+  -update
   <dd>no longer relevant</dd>
 </dl>
 <h3>Others</h3>
 <p>The following command line arguments are defined by various Eclipse plug-ins
   and are only supported if the defining plug-in is installed, resolved and activated.</p>
 <dl>
-  <dt>-noVersionCheck (workbench)</dt>
-  <dd>&lt;description&gt;</dd>
-  <dt>-perspective (workbench)</dt>
+  -noVersionCheck (workbench)
+  <dd><description></dd>
+  -perspective (workbench)
   <dd>launch Eclipse and switch to the perspective with the given id. As an example, for JDT perspective, we read the
      <a href="../../../org.eclipse.jdt.doc.isv/reference/api/org/eclipse/jdt/ui/JavaUI.html">JDT APIs</a>,
      to find the ID_PERSPECTIVE is <code>"org.eclipse.jdt.ui.JavaPerspective"</code>.</dd>
-  <dt>-refresh (org.eclipse.core.resources)</dt>
-  <dd>&lt;description&gt;</dd>
-  <dt>-showLocation (org.eclipse.ui.ide.workbench)</dt>
+  -refresh (org.eclipse.core.resources)
+  <dd><description></dd>
+  -showLocation (org.eclipse.ui.ide.workbench)
   <dd>shows the workspace path in the window title bar.  Overrides the corresponding setting in the 'Workspace'
       preference page.  Optionally a custom path can be given as a second argument.</dd>
-  <dt>-allowDeadlock</dt>
-  <dd>&lt;description&gt;</dd>
+  -allowDeadlock
+  <dd><description></dd>
 </dl>
 
 ## System Properties
@@ -284,49 +278,49 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
   <li>set the desired property in the config.ini file in the appropriate configuration
     area</li>
 </ul>
-<dl>
-  <dt><a name="activateRuntimePlugins" id="activateRuntimePlugins"></a>eclipse.activateRuntimePlugins</dt>
+
+  <a name="activateRuntimePlugins" id="activateRuntimePlugins"></a>eclipse.activateRuntimePlugins
   <dd>controls activation of runtime plug-ins. RCP applications not requiring services provided by runtime
     plug-ins can set this property to &quot;false&quot; to avoid activation of runtime plug-ins on Eclipse startup</dd>
-  <dt><a name="eclipseallowAppRelaunch" id="eclipseallowAppRelaunch"></a>eclipse.allowAppRelaunch</dt>
+  <a name="eclipseallowAppRelaunch" id="eclipseallowAppRelaunch"></a>eclipse.allowAppRelaunch
   <dd>if set to &quot;true&quot; then the main thread will continue to  wait for another application descriptor to be
   launched after the currently running application has quit.  Stopping the system.bundle (i.e. the bundle with a
   bundle ID equal to zero) will force the main thread to stop waiting for another application to launch.
   The default value is &quot;false&quot;</dd>
-  <dt><a name="eclipseapplication" id="eclipseapplication"></a>eclipse.application {-application}</dt>
+  <a name="eclipseapplication" id="eclipseapplication"></a>eclipse.application {-application}
   <dd>the identifier of the application to run. The value given here overrides
     any application defined by the product (see <a href="#eclipseproduct">eclipse.product</a>) being run</dd>
-  <dt><a name="eclipseapplicationlaunchdefault" id="eclipseapplicationlaunchdefault"></a>eclipse.application.launchDefault</dt>
+  <a name="eclipseapplicationlaunchdefault" id="eclipseapplicationlaunchdefault"></a>eclipse.application.launchDefault
   <dd>Controls launching the default application automatically once the platform is running.  A default application is identified
   by the <a href="#eclipseproduct">eclipse.product</a> or the <a href="#eclipseapplication">eclipse.application</a>
   options.  The default value is &quot;true&quot;.  Setting this property to &quot;false&quot; will prevent the default
   application from launching automatically.  Once the platform is running the main thread will wait for an application to be
   launched using an application descriptor service.</dd>
-  <dt><a name="eclipseapplicationregisterDescriptors"  id="eclipseapplicationregisterDescriptors"></a>eclipse.application.registerDescriptors</dt>
+  <a name="eclipseapplicationregisterDescriptors"  id="eclipseapplicationregisterDescriptors"></a>eclipse.application.registerDescriptors
   <dd>Controls registration of application descriptor services for all installed applications.  The default value is
   &quot;false&quot;.  If set to &quot;false&quot; only the default application will have an application descriptor service
   registered.  If set to &quot;true&quot; then all installed applications will have an application descriptor service registered.</dd>
-  <dt><a name="eclipsecommands" id="eclipsecommands"></a>eclipse.commands</dt>
+  <a name="eclipsecommands" id="eclipsecommands"></a>eclipse.commands
   <dd>a new-line separated list of all command-line arguments passed in when launching
     Eclipse </dd>
-  <dt><a name="eclipseconsolelog" id="eclipseconsolelog"></a>eclipse.consoleLog</dt>
+  <a name="eclipseconsolelog" id="eclipseconsolelog"></a>eclipse.consoleLog
   <dd>if &quot;true&quot;, any log output is also sent to Java's System.out (typically
     back to the command shell if any). Handy when combined with -debug </dd>
-  <dt><a name="eclipsedebugstartuptime" id="eclipsedebugstartuptime"></a>eclipse.debug.startupTime</dt>
+  <a name="eclipsedebugstartuptime" id="eclipsedebugstartuptime"></a>eclipse.debug.startupTime
   <dd>the time in milliseconds when the Java VM for this session was started</dd>
-  <dt><a name="eclipseeeinstallverify" id="eclipseeeinstallverify"></a>eclipse.ee.install.verify</dt>
+  <a name="eclipseeeinstallverify" id="eclipseeeinstallverify"></a>eclipse.ee.install.verify
   <dd>if set to &quot;true&quot; then the framework will check the required execution
     environment at bundle install time.  The default value is &quot;false&quot;.</dd>
-  <dt><a name="eclipseexitOnError" id="eclipseexitOnError"></a>eclipse.exitOnError</dt>
+  <a name="eclipseexitOnError" id="eclipseexitOnError"></a>eclipse.exitOnError
   <dd>if set to &quot;true&quot; then the platform will exit if an unhandled error occurs.  The default value is
   &quot;true&quot;.</dd>
-  <dt><a name="eclipseignoreApp" id="eclipseignoreApp"></a>eclipse.ignoreApp</dt>
+  <a name="eclipseignoreApp" id="eclipseignoreApp"></a>eclipse.ignoreApp
   <dd>if set to &quot;true&quot; then the main launching thread will not start the default application and
   will proceed in shutting down the platform and exiting.
   The default value is &quot;false&quot;.  This is different than the
   <a href="#eclipseapplicationlaunchdefault">eclipse.application.launchDefault</a> option because the main thread will
   not wait for an application descriptor service to be launched.</dd>
-  <dt><a name="eclipseloglevel" id="eclipseloglevel"></a>eclipse.log.level</dt>
+  <a name="eclipseloglevel" id="eclipseloglevel"></a>eclipse.log.level
   <dd>
     sets the level used when logging messages to the eclipse log.
     <ul type="disc">
@@ -336,100 +330,100 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
       <li><b>ALL</b> - enables logging of all messages (default value)</li>
     </ul>
   </dd>
-  <dt><a name="eclipselogbackupmax" id="eclipselogbackupmax"></a>eclipse.log.backup.max</dt>
+  <a name="eclipselogbackupmax" id="eclipselogbackupmax"></a>eclipse.log.backup.max
   <dd>the max number of backup log files to allow.  The oldest backup log file will be deleted
      after the max number of backup log files is reached as a result of rotating the log file.
      The default value is &quot;10&quot;.  A negative or zero value will cause the default
      value to be used.</dd>
-  <dt><a name="eclipselogsizemax" id="eclipselogsizemax"></a>eclipse.log.size.max</dt>
+  <a name="eclipselogsizemax" id="eclipselogsizemax"></a>eclipse.log.size.max
   <dd>the max size in Kb that the log file is allowed to grow.  The log file is rotated when
      the file size exceeds the max size.  The default value is &quot;1000&quot;.
      A negative value will cause the default value to be used.  A zero value indicates
      no max log size.</dd>
-  <dt><a name="eclipsenoextensionmunging" id="eclipsenoextensionmunging"></a>eclipse.noExtensionMunging</dt>
+  <a name="eclipsenoextensionmunging" id="eclipsenoextensionmunging"></a>eclipse.noExtensionMunging
   <dd>if &quot;true&quot;, legacy registry extension are left as-is. By default such extensions
     are updated to use the new extension point ids found in Eclipse 3.0.</dd>
-  <dt><a name="eclipsenolazyregistrycacheloading" id="eclipsenolazyregistrycacheloading"></a>eclipse.noLazyRegistryCacheLoading {-noLazyRegistryCacheLoading}</dt>
+  <a name="eclipsenolazyregistrycacheloading" id="eclipsenolazyregistrycacheloading"></a>eclipse.noLazyRegistryCacheLoading {-noLazyRegistryCacheLoading}
   <dd>if &quot;true&quot;, the platform's plug-in registry cache loading optimization is
       deactivated. By default, configuration elements are loaded from the registry
       cache (when available)
       only on demand, reducing memory footprint. This option forces the registry
   cache to be fully loaded at startup. </dd>
-  <dt><a name="eclipsenoregistrycache" id="eclipsenoregistrycache"></a>eclipse.noRegistryCache {-noRegistryCache}</dt>
+  <a name="eclipsenoregistrycache" id="eclipsenoregistrycache"></a>eclipse.noRegistryCache {-noRegistryCache}
   <dd>if &quot;true&quot;, the internal extension registry cache is neither read or written</dd>
-  <dt><a name="eclipseplugincustomization" id="eclipseplugincustomization"></a>eclipse.pluginCustomization {-pluginCustomization}</dt>
+  <a name="eclipseplugincustomization" id="eclipseplugincustomization"></a>eclipse.pluginCustomization {-pluginCustomization}
   <dd>the file system location of a properties file containing default settings
       for plug-in preferences. These default settings override default settings
       specified in the primary feature. Relative paths are interpreted relative
   to the current working directory for Eclipse itself.</dd>
-  <dt><a name="eclipseproduct" id="eclipseproduct"></a>eclipse.product {-product}</dt>
+  <a name="eclipseproduct" id="eclipseproduct"></a>eclipse.product {-product}
   <dd>the identifier of the product being run. This controls various branding
   information and what application is used.</dd>
-  <dt><a name="registrymultilang" id="registrymultilang"></a>eclipse.registry.MultiLanguage {-registryMultiLanguage}</dt>
+  <a name="registrymultilang" id="registrymultilang"></a>eclipse.registry.MultiLanguage {-registryMultiLanguage}
   <dd>if &quot;true&quot;, extension registry supports translation to multiple languages. By default extension registry provides
   translation only to the Eclipse locale specified by the <a href="#osginl">osgi.nl</a>.</dd>
-  <dt><a name="serviceJobs" id="serviceJobs"></a>eclipse.service.jobs</dt>
+  <a name="serviceJobs" id="serviceJobs"></a>eclipse.service.jobs
   <dd>controls registration of OSGi services. Set to &quot;false&quot; to suppress registration of OSGi
     services by the <code>org.eclipse.core.jobs</code> plug-in</dd>
-  <dt><a name="servicePref" id="servicePref"></a>eclipse.service.pref</dt>
+  <a name="servicePref" id="servicePref"></a>eclipse.service.pref
   <dd>Controls registration of OSGi services. Set to &quot;false&quot; to suppress registration of OSGi
      services by the <code>org.eclipse.equinox.preferences</code> plug-in</dd>
-  <dt><a name="eclipsestarttime" id="eclipsestarttime"></a>eclipse.startTime</dt>
+  <a name="eclipsestarttime" id="eclipsestarttime"></a>eclipse.startTime
   <dd>This property is set at the time Eclipse is started.  The value of this property a string
       representation of the value returned by System.currentTimeMillis().  This value is not
       intended to be set by users.</dd>
-  <dt><a name="eclipsestateSaveDelayInterval" id="eclipsestateSaveDelayInterval"></a>eclipse.stateSaveDelayInterval</dt>
+  <a name="eclipsestateSaveDelayInterval" id="eclipsestateSaveDelayInterval"></a>eclipse.stateSaveDelayInterval
   <dd>the delay interval (in milliseconds) for persisting state change requests.  The default
     is 30000 ms (30 seconds).  State change requests are delayed to prevent massive amounts
     of disk writes while performing administrative operations (e.g. installing bundles).
     The delay interval is used to wait for a period of inactivity before persisting the
     framework state information.</dd>
-  <dt><a name="eclipsesecurity"></a>eclipse.security</dt>
+  <a name="eclipsesecurity"></a>eclipse.security
   <dd>specifies that a security policy and manager should be configured when the framework is launched.  If the launcher is used (org.eclipse.equinox.launcher)
    and this property is set to any value then the launcher will configure a java.security.Policy that grants all permissions to the launcher
    and the framework.  When the framework is launched it will use this property to determine the security manager to use.  If set to <b>osgi</b>
    then the Equinox security manager is used.  This security manager is required to fully support the OSGi Conditional Permission Admin specification.  If
    the property is set to the empty string then java.lang.SecurityManager will be used; otherwise the property specifies a security manager
    class that should be used as the security manager.</dd>
-  <dt><a name="eclipsetracesizemax"></a>eclipse.trace.size.max <span style="font-style: italic;">NEW</span></dt>
+  <a name="eclipsetracesizemax"></a>eclipse.trace.size.max <span style="font-style: italic;">NEW</span>
   <dd>the max size in Kb that the trace file is allowed to grow. The trace file is rotated when the file size exceeds the max size.
   The default value is "1000". A negative value will cause the default value to be used. A zero value indicates no max trace size.</dd>
-  <dt><a name="eclipsetracebackupmax"></a>eclipse.trace.backup.max <span style="font-style: italic;">NEW</span></dt>
+  <a name="eclipsetracebackupmax"></a>eclipse.trace.backup.max <span style="font-style: italic;">NEW</span>
   <dd>the max number of backup trace files to allow. The oldest backup trace file will be deleted after the max number of backup trace
   files is reached as a result of rotating the trace file. The default value is "10". A negative or zero value will cause the default value to be used.</dd>
-  <dt><a name="eclipsevm" id="eclipsevm"></a>eclipse.vm {-vm}</dt>
+  <a name="eclipsevm" id="eclipsevm"></a>eclipse.vm {-vm}
   <dd>the path to the Java executable used to run Eclipse. This information is
   used to construct relaunch command lines.</dd>
-  <dt><a name="eclipsevmargs" id="eclipsevmargs"></a>eclipse.vmargs {-vmargs}</dt>
+  <a name="eclipsevmargs" id="eclipsevmargs"></a>eclipse.vmargs {-vmargs}
   <dd>lists the VM arguments used to run Eclipse. This
       information is used to construct relaunch command
   lines.</dd>
-  <dt><a name="eclipseorientation" id="eclipseorientation"></a>eclipse.orientation {-dir}</dt>
+  <a name="eclipseorientation" id="eclipseorientation"></a>eclipse.orientation {-dir}
   <dd>the workbench orientation which can be <b>ltr</b> (left-to-right) or <b>rtl</b> (right-to-left).</dd>
-  <dt><a name="equinoxsecurityvm"></a>equinox.security.vm</dt>
+  <a name="equinoxsecurityvm"></a>equinox.security.vm
   <dd>If set to &quot;server&quot;, security modules will not attempt to substitute VM's JAAS processing.</dd>
-  <dt><a name="swtreportNonDisposed"></a>org.eclipse.swt.graphics.Resource.reportNonDisposed</dt>
+  <a name="swtreportNonDisposed"></a>org.eclipse.swt.graphics.Resource.reportNonDisposed
   <dd>If set to &quot;true&quot;, <a href="PLUGINS_ROOT/org.eclipse.platform.doc.isv/guide/swt_graphics.htm#swtreportNonDisposed">non-disposed SWT Resources</a> will be logged.</dd>
-  <dt><a name="osgiadaptor"></a>osgi.adaptor</dt>
+  <a name="osgiadaptor"></a>osgi.adaptor
   <dd>the class name of the OSGi framework adaptor to use.</dd>
-  <dt><a name="osgiarch"></a>osgi.arch {-arch}</dt>
+  <a name="osgiarch"></a>osgi.arch {-arch}
   <dd>the processor architecture value. The value should be one of the processor architecture
   names known to Eclipse (e.g., x86, ppc, sparc, ...). See <tt>org.eclipse.osgi.service.environment.Constants</tt> for known values.</dd>
-  <dt><a name="osgibaseconfigurationarea"></a>osgi.baseConfiguration.area</dt>
+  <a name="osgibaseconfigurationarea"></a>osgi.baseConfiguration.area
   <dd>specifies a base configuration that is used when
       <a href="#osgiconfigurationarea">osgi.configuration.area</a> is not specified.</dd>
-  <dt><a name="osgibundlefilelimit"></a>osgi.bundlefile.limit</dt>
+  <a name="osgibundlefilelimit"></a>osgi.bundlefile.limit
   <dd>specifies a limit on the number of jar files the framework will keep open.
       The minimum value allowed is 10.  Any value less than 10 will disable the
       bundle file limit, making the the number of jar files the framework
       keeps open unlimited.  By default the value is 100.</dd>
-  <dt><a name="osgibundles"></a>osgi.bundles</dt>
+  <a name="osgibundles"></a>osgi.bundles
   <dd>The comma-separated list of bundles which are automatically installed
     and optionally started
      once the system is up and running. Each entry is of the form:<br>
-	 <pre>    &lt;URL | simple bundle location&gt;[@ [&lt;start-level&gt;] [&quot;:start&quot;]]</pre>
+	 <pre>    <URL | simple bundle location>[@ [<start-level>] [&quot;:start&quot;]]</pre>
      The start-level indicates the OSGi start level at which the bundle should
-     run. If the start-level (&gt;0 integer) is omitted then the framework will use the
+     run. If the start-level (>0 integer) is omitted then the framework will use the
      default start level for the bundle. If the &quot;start&quot; tag is added
      then the bundle will be marked as started after being installed.
      Simple bundle locations are interepreted as relative to the framework's
@@ -439,21 +433,21 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
      If the bundle is a directory bundle then using a file: URL without the use of reference: is not
      supported (e.g. file:/path/to/myDirectoryBundle_1.0.0/ must use reference:file:/path/to/myDirectoryBundle_1.0.0/)
     </dd>
-  <dt><a name="osgibundlesdefaultStartLevel"></a>osgi.bundles.defaultStartLevel</dt>
+  <a name="osgibundlesdefaultStartLevel"></a>osgi.bundles.defaultStartLevel
   <dd>this is the startlevel that all bundles will be set to if installed by Eclipse Update.
   Bundles which are specified on the <a href="#osgibundles">osgi.bundles</a> list can specify a particular startlevel.
   If they do not specify a startlevel then they default to the value of
   osgi.bundles.defaultStartLevel.  The default value of osgi.bundles.defaultStartLevel is 4.</dd>
-  <dt><a name="osgicompatibilitybootdelegation" id="osgicompatibilitybootdelegation"></a>osgi.compatibility.bootdelegation</dt>
+  <a name="osgicompatibilitybootdelegation" id="osgicompatibilitybootdelegation"></a>osgi.compatibility.bootdelegation
   <dd>if set to &quot;true&quot; then the parent (boot by default) classloader is delegated to as a last resort if a
   class or resource cannot be found.  The default value is &quot;true&quot;.</dd>
-  <dt><a name="osgicompatibilityerrorOnFailedStart" id="osgicompatibilityerrorOnFailedStart"></a>osgi.compatibility.errorOnFailedStart</dt>
+  <a name="osgicompatibilityerrorOnFailedStart" id="osgicompatibilityerrorOnFailedStart"></a>osgi.compatibility.errorOnFailedStart
   <dd>A bundle may specify a lazy activation policy using the bundle manifest headers Eclipse-LazyStart or Bundle-ActivationPolicy.  According
   to the OSGi R4.1 specification, if a bundle with a lazy activation policy fails to start then class loads must still succeed.  Before the OSGi
   R4.1 specification Eclipse defined the lazy activation policy such that failed starts would cause class loading errors to be thrown.  If
   osgi.compatibility.errorOnFailedStart is set to &quot;true&quot; then failed starts will result in class loading errors; otherwise the
   activation error is logged and the classes are allowed to load from bundles which failed to start.  The default value is &quot;true&quot;.</dd>
-  <dt><a name="osgicompatibilityeagerStart.LazyActivation" id="osgicompatibilityeagerStart.LazyActivation"></a>osgi.compatibility.eagerStart.LazyActivation</dt>
+  <a name="osgicompatibilityeagerStart.LazyActivation" id="osgicompatibilityeagerStart.LazyActivation"></a>osgi.compatibility.eagerStart.LazyActivation
   <dd>The OSGi R4.1 specification mandates that all bundles must be marked for start before they are allowed to activate.  This includes bundles
   which specify a lazy activation policy.  A new method Bundle.start(options) has been added to allow lazy activated bundles to be activated
   according to their lazy activation policy.  Before the OSGi R4.1 specification Eclipse defined the lazy activation policy such that
@@ -461,16 +455,16 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
   If osgi.compatibility.eagerStart.LazyActivation is set to &quot;true&quot; then bundles with the lazy activation policy will automatically be
   marked for activation; otherwise bundles with the lazy activation policy must be started with the new Bundle.start(options) method before
   being allowed to lazy activate.  The default value is &quot;true&quot;.</dd>
-  <dt><a name="osgicheckConfiguration" id="osgicheckConfiguration"></a>osgi.checkConfiguration</dt>
+  <a name="osgicheckConfiguration" id="osgicheckConfiguration"></a>osgi.checkConfiguration
   <dd>if set to &quot;true&quot; then timestamps are check in the configuration cache to ensure that the cache
   is up to date with respect to the contents of the installed bundles.  The default value is &quot;false&quot;.</dd>
-  <dt><a name="osgiclassloadersingleThreadLoads" id="osgiclassloadersingleThreadLoads"></a>osgi.classloader.singleThreadLoads</dt>
+  <a name="osgiclassloadersingleThreadLoads" id="osgiclassloadersingleThreadLoads"></a>osgi.classloader.singleThreadLoads
   <dd>if set to &quot;true&quot; then only one thread is allowed to load a class at a time.  The default value is
    &quot;false&quot;.  This option can be used to work around certain VM bugs which can cause deadlock.
    See <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=121737" target="_blank">bug 121737</a>.  Note that recent
    discussions in <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=227587" target="_blank">bug 227587</a> have shown
    that this option introduces another kind of deadlock.</dd>
-  <dt><a name="osgiclassloaderlock" id="osgiclassloaderlock"></a>osgi.classloader.lock</dt>
+  <a name="osgiclassloaderlock" id="osgiclassloaderlock"></a>osgi.classloader.lock
   <dd>
     the classloader locking strategy to use when defining classes.  The valid types are the following:
     <ul type="disc">
@@ -484,39 +478,40 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
     class loader natively (e.g. the Sun VM).  When running on these kinds of VMs deadlock can still
     occur because of the VM lock.
   </dd>
-  <dt><a name="osgiclassloadercopynatives" id="osgiclassloadercopynatives"></a>osgi.classloader.copy.natives <span style="font-style: italic;">NEW</span></dt>
+  <a name="osgiclassloadercopynatives" id="osgiclassloadercopynatives"></a>osgi.classloader.copy.natives <span style="font-style: italic;">NEW</span>
   <dd>
     If set to &quot;true&quot; then native code which is loaded from a bundle will be copied to a unique
     location on disk each time a class loader asks to load the library from the bundle.  This may be needed in
     scenarios where the framework is restarted without shutting down the VM.  The default value is &quot;false&quot;.
   </dd>
-  <dt><a name="osgiclassloadertype" id="osgiclassloadertype"></a>osgi.classloader.type <span style="font-style: italic;">NEW</span></dt>
+  <a name="osgiclassloadertype" id="osgiclassloadertype"></a>osgi.classloader.type <span style="font-style: italic;">NEW</span>
   <dd>
     If set to &quot;parallel&quot; then a check is done on JavaSE 7 for the ClassLoader#registerAsParallelCapable
     method and if found then it is called to allow for parallel class loads.  On Java SE 7 this is the preferred
     way to avoid class loader deadlock because of cyclic class loaders.
   </dd>
-  <dt><a name="osgiclean"></a>osgi.clean</dt>
-  <dd>if set to &quot;true&quot;, any cached data used by the OSGi framework and eclipse runtime
-will be wiped clean.  This will clean the caches used to store bundle
-dependency resolution and eclipse extension registry data.  Using this option
-will force eclipse to reinitialize these caches.</dd>
-  <dt><a name="osgiconfigurationcascaded"></a>osgi.configuration.cascaded</dt>
+
+* `osgi.clean`
+  * if == "true" -> ANY cached data / used by the OSGi framework & eclipse runtime -- will be -- wiped clean
+    * == caches / store bundle dependency resolution & eclipse extension registry data 
+    * == eclipse -- will reinitialize -- these caches
+  
+<a name="osgiconfigurationcascaded"></a>osgi.configuration.cascaded
   <dd>if set to &quot;true&quot;, this configuration is cascaded to a parent
     configuration.  The parent configuration is specified by the <a href="#osgisharedconfigurationarea">osgi.sharedConfiguration.area</a>.
     See the section on <a href="#locations">locations</a> for more details.</dd>
-  <dt><a name="osgiconfigurationarea"></a>osgi.configuration.area {-configuration}</dt>
+  <a name="osgiconfigurationarea"></a>osgi.configuration.area {-configuration}
   <dd>the configuration location for this run of the platform. The configuration
     determines what plug-ins will run as well as various other system settings.
     See the section on <a href="#locations">locations</a>  for
     more details.</dd>
-  <dt><a name="osgiconfigurationareadefault" id="osgiconfigurationareadefault"></a>osgi.configuration.area.default</dt>
+  <a name="osgiconfigurationareadefault" id="osgiconfigurationareadefault"></a>osgi.configuration.area.default
   <dd>the default configuration location for this run of the platform. The configuration
     determines what plug-ins will run as well as various other system settings.
     This value (i.e., the default setting) is only used if no value for the osgi.configuration.area
     is set. See the section on <a href="#locations">locations</a>  for
     more details.</dd>
-  <dt><a name="osgiconsole"></a>osgi.console {-console [[host:]port]} </dt>
+  <a name="osgiconsole"></a>osgi.console {-console [[host:]port]} 
   <dd>if set to a non-null value, the OSGi console (if installed) is enabled.
     This is handy for investigating the state of the system.
     The value syntax is [[host:]port] where the port and optional host name specify which port
@@ -525,7 +520,7 @@ will force eclipse to reinitialize these caches.</dd>
     listen to System.in and direct its output to System.out. In order for this option
     to be supported the Equinox console must be installed.  See <a href="../../guide/console_shell.htm">Console Shell</a>
     for more information.</dd>
-  <dt><a name="osgicontextClassLoaderParent"></a>osgi.contextClassLoaderParent</dt>
+  <a name="osgicontextClassLoaderParent"></a>osgi.contextClassLoaderParent
   <dd>the classloader type to use as the parent classloader of the context
     classloader used by the Framework.  The valid types are the following:
     <ul type="disc">
@@ -537,14 +532,14 @@ will force eclipse to reinitialize these caches.</dd>
      that was set when the framework launched (default value).</li>
     </ul>
   </dd>
-  <dt><a name="osgidataAreaRequiresExplicitInit"></a>osgi.dataAreaRequiresExplicitInit</dt>
+  <a name="osgidataAreaRequiresExplicitInit"></a>osgi.dataAreaRequiresExplicitInit
   <dd>if &quot;true&quot;, don't allow clients to initialize instance location if the instance
     area is not explicitly defined yet. This prevents a plug-in that starts early from accessing
     the instance area before it has been configured by the osgi.instance.area setting.
     It is recommended to set osgi.dataAreaRequiresExplicitInit=true.
     See <a href="#osgiinstancearea">osgi.instance.area</a>.
   </dd>
-  <dt><a name="osgidebug"></a>osgi.debug {-debug}</dt>
+  <a name="osgidebug"></a>osgi.debug {-debug}
   <dd>if set to a non-null value, the platform is put in debug mode. If the value
     is a string it is interpreted as the location of the
     .options file. This file indicates what debug
@@ -552,7 +547,7 @@ will force eclipse to reinitialize these caches.</dd>
     available
     for a plug-in and whether or not they are enabled. If a location is not specified,
   the platform searches for the .options file under the install directory.</dd>
-  <dt><a name="osgidev"></a>osgi.dev {-dev}</dt>
+  <a name="osgidev"></a>osgi.dev {-dev}
   <dd>if set to the empty string, dev mode is simply turned on. This property
     may also be set to a comma-separated class path entries
     which are added to
@@ -561,9 +556,9 @@ will force eclipse to reinitialize these caches.</dd>
     plug-in or a URL to a Java properties file containing custom classpath additions
     for a set of plug-ins. For each plug-in requiring a customized dev time classpath
     the file will contain an entry of the form<br>
-<pre>    &lt;plug-in id&gt;=&lt;comma separated list of classpath entries to add&gt;</pre>
+<pre>    <plug-in id>=<comma separated list of classpath entries to add></pre>
     where plug-in id &quot;*&quot; matches any plug-in not otherwise mentioned.</dd>
-  <dt><a name="osgifilepermissionscommand"></a>osgi.filepermissions.command</dt>
+  <a name="osgifilepermissionscommand"></a>osgi.filepermissions.command
   <dd>specifies an optional OS specific command to set file permissions on extracted
       native code.  On some operating systems it is required that native libraries be
       set to executable.  This optional property allows you to specify the command.
@@ -571,36 +566,36 @@ will force eclipse to reinitialize these caches.</dd>
       <pre>    osgi.filepermissions.command=&quot;chmod +rx [fullpath]&quot;</pre>
       The [fullpath] is used to substitute the actual file path by the framework.
   </dd>
-  <dt><a name="o.pngramework"></a>osgi.framework</dt>
+  <a name="o.pngramework"></a>osgi.framework
   <dd>the URL location of the OSGi framework. Useful if the Eclipse install
   is disjoint. See the section on <a href="#locations">locations</a> for more details. </dd>
-  <dt><a name="o.pngrameworkclasspath"></a>osgi.frameworkClassPath</dt>
+  <a name="o.pngrameworkclasspath"></a>osgi.frameworkClassPath
   <dd>a comma separated list of classpath entries for the OSGi framework implementation.
     Relative locations are interpreted as relative to the framework location
     (see <a href="#o.pngramework">osgi.framework</a>)</dd>
-  <dt><a name="osgiframeworkextensions"></a>osgi.framework.extensions</dt>
+  <a name="osgiframeworkextensions"></a>osgi.framework.extensions
   <dd>a comma-separated list of framework extensions.  Each entry is of the form:<br>
-	 <pre>    &lt;simple bundle location&gt;</pre>
+	 <pre>    <simple bundle location></pre>
       Simple bundle locations are searched in the parent directory of the
       org.eclipse.osgi bundle.  Framework extensions may be used to run Eclipse with a different
       framework adaptor.  The framework extension may contain an eclipse.properties file to set
       system properties.  For example, a framework extension that provides a framework adaptor
       implementation can specify what the adaptor class is by setting the
       <a href="#osgiadaptor">osgi.adaptor</a> property.</dd>
-  <dt><a name="osgiframeworkshape"></a>osgi.framework.shape</dt>
+  <a name="osgiframeworkshape"></a>osgi.framework.shape
   <dd>set to the shape of the Eclipse OSGi Framework implementation.  This property is set when
   the Eclipse platform is started and is not intended by be set by the user.  The value
   &quot;jar&quot; indicates that the Eclipse OSGi Framework is contained in a single jar.
   The value &quot;folder&quot; indicates that the Eclipse OSGi Framework is contained in a
   directory.</dd>
-  <dt><a name="osgiframeworklibraryextensions"></a>osgi.framework.library.extensions</dt>
+  <a name="osgiframeworklibraryextensions"></a>osgi.framework.library.extensions
   <dd>a comma separated list of additional library file extensions that
     must be searched for.  If not set then only the library name returned by
     System.mapLibraryName(String) will be used to search.  This is needed for
     certain operating systems which allow more than one extension for a library.
     For example AIX allows library extensions of .a and .so, but
     System.mapLibraryName(String) will only return names with the .a extension.</dd>
-  <dt><a name="osgiframeworkParentClassloader"></a>osgi.frameworkParentClassloader</dt>
+  <a name="osgiframeworkParentClassloader"></a>osgi.frameworkParentClassloader
   <dd>the classloader type to use as the parent classloader for the the Framework.  The valid types are the following:
     <ul type="disc">
       <li><b>app</b> - the application classloader.</li>
@@ -609,7 +604,7 @@ will force eclipse to reinitialize these caches.</dd>
       <li><b>current</b> - the classloader used to load the equinox launcher.</li>
     </ul>
   </dd>
-  <dt><a name="osgiframeworkactiveThreadType"></a>osgi.framework.activeThreadType</dt>
+  <a name="osgiframeworkactiveThreadType"></a>osgi.framework.activeThreadType
   <dd>
    if set to <b>normal</b> then an active framework thread is started when the framework is launched
    that monitors the lifecycle of the framework.  This thread is a non-daemon thread and is used to prevent
@@ -619,13 +614,13 @@ will force eclipse to reinitialize these caches.</dd>
    <b>normal</b>.  Setting this option to any other value besides <b>normal</b> will prevent the
    active framework thread from getting started when the framework is launched.
   </dd>
-  <dt><a name="osgiframeworkuseSystemProperties"></a>osgi.framework.useSystemProperties</dt>
+  <a name="osgiframeworkuseSystemProperties"></a>osgi.framework.useSystemProperties
   <dd>controls whether the framework properties are backed by the global System properties
     or held privately for each instance of the framework.  By default the framework properties
     are backed by the System properties (e.g. true).  This property is useful when running
     multiple instances of the OSGi Framework within the same VM and each instance has a separate
     set of configuration properties (e.g. set in the config.ini).</dd>
-  <dt><a name="osgigenericAliases"></a>osgi.genericAliases</dt>
+  <a name="osgigenericAliases"></a>osgi.genericAliases
   <dd>a comma separated list of generic aliases that can be used to map existing manifest
     headers onto Eclipse-GenericCapability and Eclipse-GenericRequire manifest headers.  The
     osgi.genericAliases property uses the following syntax:
@@ -637,25 +632,25 @@ will force eclipse to reinitialize these caches.</dd>
     the following value:
     <pre>  osgi.genericAliases=Export-Service:Import-Service:osgi.service</pre>
   </dd>
-  <dt><a name="osgihookconfigurators"></a>osgi.hook.configurators</dt>
+  <a name="osgihookconfigurators"></a>osgi.hook.configurators
   <dd>a comma separated list of hook configurators.  If this property is set then the list of
     configurators specified will be the only configurators used.  Any hook configurators
     specified in hookconfigurators.properties files will be ignored.</dd>
-  <dt><a name="osgihookconfiguratorsinclude"></a>osgi.hook.configurators.include</dt>
+  <a name="osgihookconfiguratorsinclude"></a>osgi.hook.configurators.include
   <dd>a comma separated list of additional hook configurators.  This is helpful for
     configuring optional hook configurators.  This option is ignored if the
     <a href="#osgihookconfigurators">osgi.hook.configurators</a> option is used.</dd>
-  <dt><a name="osgihookconfiguratorsexclude"></a>osgi.hook.configurators.exclude</dt>
+  <a name="osgihookconfiguratorsexclude"></a>osgi.hook.configurators.exclude
   <dd>a comma separated list of hook configurators to exclude.  This is helpful for disabling
     hook configurators that are specified in hook configurator properties files.  This option
     is ignored if the <a href="#osgihookconfigurators">osgi.hook.configurators</a> option is used.</dd>
-  <dt><a name="osgijavaprofile"></a>osgi.java.profile</dt>
+  <a name="osgijavaprofile"></a>osgi.java.profile
   <dd>a URL to the JRE profile file to use.  The specified URL is read as a Java properties
      file.  A JRE profile contains values for the properties org.osgi.framework.system.packages,
      org.osgi.framework.bootdelegation and org.osgi.framework.executionenvironment.  If the
      osgi.java.profile is not set then a profile is selected based on the
      java.specification.version value of the running JRE.</dd>
-  <dt><a name="osgijavaprofilebootdelegation"></a>osgi.java.profile.bootdelegation</dt>
+  <a name="osgijavaprofilebootdelegation"></a>osgi.java.profile.bootdelegation
   <dd>
     a java profile <a href="#osgijavaprofile">osgi.java.profile</a> may contain a
     &quot;org.osgi.framework.bootdelegation&quot; property.  This value may be used to set the system
@@ -680,17 +675,17 @@ will force eclipse to reinitialize these caches.</dd>
       </li>
     </ul>
   </dd>
-  <dt><a name="osgiinstallarea" id="osgiinstallarea"></a>osgi.install.area {-install}</dt>
+  <a name="osgiinstallarea" id="osgiinstallarea"></a>osgi.install.area {-install}
   <dd>the install location of the platform. This setting indicates the location
     of the basic Eclipse plug-ins and is useful if the Eclipse install is disjoint.
   See the section on <a href="#locations">locations</a> for more details. </dd>
-  <dt><a name="osgiinstancearea"></a>osgi.instance.area {-data}</dt>
+  <a name="osgiinstancearea"></a>osgi.instance.area {-data}
   <dd>the instance data location for this session. Plug-ins use this location
     to store their data. For example, the Resources plug-in uses this as the
     default location for projects (aka the workspace). See the section on <a href="#locations">locations</a> for
     more details. Set <a href="#osgidataAreaRequiresExplicitInit">osgi.dataAreaRequiresExplicitInit</a> to ensure
     that data area is explicitly initialized before plug-ins can use it.</dd>
-  <dt><a name="osgiinstanceareadefault" id="osgiinstanceareadefault"></a>osgi.instance.area.default</dt>
+  <a name="osgiinstanceareadefault" id="osgiinstanceareadefault"></a>osgi.instance.area.default
   <dd>the default instance data location for this session. Plug-ins use this
     location to store their data. For example, the Resources plug-in uses this
     as the
@@ -698,32 +693,32 @@ will force eclipse to reinitialize these caches.</dd>
     default setting) is only used if no value for the osgi.instance.area
     is set. See the section on <a href="#locations">locations</a> for
     more details.</dd>
-  <dt><a name="osgilocking"></a>osgi.locking</dt>
+  <a name="osgilocking"></a>osgi.locking
   <dd>the locking type to use for this run of the platform.  The valid locking types
   are &quot;java.io&quot;, &quot;java.nio&quot;, and &quot;none&quot;.  The default value is
   &quot;java.nio&quot; unless the JRE does not support &quot;java.nio&quot; then &quot;java.io&quot;
   is the default.</dd>
-  <dt><a name="osgimanifestcache"></a>osgi.manifest.cache</dt>
+  <a name="osgimanifestcache"></a>osgi.manifest.cache
   <dd>the location where generated manifests are discovered and generated. The
     default is in the configuration area but the manifest cache can be stored
     separately.</dd>
-  <dt><a name="osginl"></a>osgi.nl {-nl}</dt>
+  <a name="osginl"></a>osgi.nl {-nl}
   <dd>the name of the locale on which Eclipse platform will run. NL values should
     follow the standard Java locale naming conventions.</dd>
-  <dt><a name="osginlextensions"></a>osgi.nl.extensions {-nlExtensions}</dt>
+  <a name="osginlextensions"></a>osgi.nl.extensions {-nlExtensions}
   <dd>the NL extensions, such as collation rules (sorting, searching, grouping), calendar system (locale)
     and currency format. This is a list of <a href="http://userguide.icu-project.org/locale#TOC-Keywords">keyword</a>=value pairs. For example:
     <pre>-nlExtensions &quot;@collation=phonebook;calendar=hebrew;currency=USD&quot;</pre></dd>
-  <dt><a name="osginluser"></a>osgi.nl.user</dt>
+  <a name="osginluser"></a>osgi.nl.user
   <dd>the name of the locale when the user explicitly adds -nl to the command-line arguments.</dd>
-  <dt><a name="osginoshutdown"></a>osgi.noShutdown {-noExit}</dt>
+  <a name="osginoshutdown"></a>osgi.noShutdown {-noExit}
   <dd>if &quot;true&quot;, the OSGi Framework will not be shut down after the Eclipse application has ended.  This
       is useful for examining the OSGi Framework after the Eclipse application has ended.  Note that the VM will terminate
       if no active non-daemon threads exists. See <a href="#osgiframeworkactiveThreadType">osgi.framework.activeThreadType</a>.</dd>
-  <dt><a name="osgios"></a>osgi.os {-os}</dt>
+  <a name="osgios"></a>osgi.os {-os}
   <dd>the operating system value. The value should be one of the operating system
   names known to Eclipse (e.g., win32, linux, ...). See <tt>org.eclipse.osgi.service.environment.Constants</tt> for known values.</dd>
-  <dt><a name="osgiparentclassloader"></a>osgi.parentClassloader</dt>
+  <a name="osgiparentclassloader"></a>osgi.parentClassloader
   <dd>the classloader type to use as the parent classloader for all bundles installed
   in the Framework.  The valid types are the following:
     <ul type="disc">
@@ -733,10 +728,10 @@ will force eclipse to reinitialize these caches.</dd>
       <li><b>fwk</b> - the framework classloader.</li>
     </ul>
   </dd>
-  <dt><a name="osgirequiredjavaversion"></a>osgi.requiredJavaVersion</dt>
+  <a name="osgirequiredjavaversion"></a>osgi.requiredJavaVersion
   <dd>The minimum java version that is required to launch Eclipse.  The default value is
       &quot;1.4.1&quot;.</dd>
-  <dt><a name="osgiresolvermode"></a>osgi.resolverMode</dt>
+  <a name="osgiresolvermode"></a>osgi.resolverMode
   <dd>the mode used to resolve bundles installed in the Framework.  The default resolver
       mode is not strict.  The following options are available.
     <ul type="disc">
@@ -744,7 +739,7 @@ will force eclipse to reinitialize these caches.</dd>
       <li><b>development</b> - used for development time resolution.  This mode disables certain resolver rules that are not needed at development time.  For example, singleton selection is disabled to allow the development of multiple versions of a singleton bundle</li>
     </ul>
   </dd>
-  <dt><a name="osgi.resolver.usesMode"></a>osgi.resolver.usesMode</dt>
+  <a name="osgi.resolver.usesMode"></a>osgi.resolver.usesMode
   <dd>
     the resolver mode used to resolve <b>uses</b> directives on Export-Package statements.
      <ul type="disc">
@@ -753,11 +748,11 @@ will force eclipse to reinitialize these caches.</dd>
       <li><b>ignore</b> - ignores all uses directives on exports.  This mode is very fast by may result in inconsistent class spaces in resolved bundles.</li>
     </ul>
   </dd>
-  <dt><a name="osgisharedconfigurationarea"></a>osgi.sharedConfiguration.area</dt>
+  <a name="osgisharedconfigurationarea"></a>osgi.sharedConfiguration.area
   <dd>the shared configuration location for this run of the platform.  If the
   <a href="#osgiconfigurationcascaded">osgi.configuration.cascaded</a> property is set
   to &quot;true&quot; then shared configuration area is used as the parent configuration.</dd>
-  <dt><a name="osgisignedcontentsupport"></a>osgi.signedcontent.support</dt>
+  <a name="osgisignedcontentsupport"></a>osgi.signedcontent.support
   <dd>A comma separated list of options for signed content support.  The valid types are the following:
     <ul type="disc">
       <li><b>certificate</b> - enables parsing and verification of certificates.</li>
@@ -769,7 +764,7 @@ will force eclipse to reinitialize these caches.</dd>
       <li><b>all</b> - same as &quot;certificate,trust,runtime,authority&quot;.</li>
     </ul>
   </dd>
-  <dt><a name="osgisignedcontenttrustengine"></a>osgi.signedcontent.trust.engine</dt>
+  <a name="osgisignedcontenttrustengine"></a>osgi.signedcontent.trust.engine
   <dd>
   A service property key used to identify an implementation of the <b>org.eclipse.osgi.service.security.TrustEngine</b> service.
   A TrustEngine service should be registered with a unique value for this property to allow selection of the TrustEngine
@@ -777,15 +772,15 @@ will force eclipse to reinitialize these caches.</dd>
   property to select particular TrustEngine service implementations at runtime.  If this property is not set then
   all available TrustEngine services are used at runtime.
   </dd>
-  <dt><a name="osgisplashlocation"></a>osgi.splashLocation</dt>
+  <a name="osgisplashlocation"></a>osgi.splashLocation
   <dd>the absolute URL location of the splash screen (.bmp file) to to show while
     starting Eclipse. This property overrides any value set in <a href="#osgisplashpath">osgi.splashPath</a>.</dd>
-  <dt><a name="osgisplashpath"></a>osgi.splashPath</dt>
+  <a name="osgisplashpath"></a>osgi.splashPath
   <dd>a comma separated list of URLs to search for a file called splash.bmp.
   This property is overriden by any value set in <a href="#osgisplashlocation">osgi.splashLocation</a>.</dd>
-  <dt><a name="osgistartlevel"></a>osgi.startLevel</dt>
+  <a name="osgistartlevel"></a>osgi.startLevel
   <dd>the start level value the framework will be set to at startup.  The default value is 6.</dd>
-  <dt><a name="osgistrictbundleentrypath"></a>osgi.strictBundleEntryPath</dt>
+  <a name="osgistrictbundleentrypath"></a>osgi.strictBundleEntryPath
   <dd>
     On some operating systems Equinox may return a bundle entry that is requested with a path that does not
     correspond to an actual bundle entry path. For example, on Windows file name comparison operations are
@@ -794,42 +789,41 @@ will force eclipse to reinitialize these caches.</dd>
     of Equinox. This property is relevant only when the bundle is installed from a folder (not jarred) and is
     ignored otherwise.
   </dd>
-  <dt><a name="osgisupportmultipleHosts"></a>osgi.support.multipleHosts <span style="font-style: italic;">NEW</span></dt>
+  <a name="osgisupportmultipleHosts"></a>osgi.support.multipleHosts <span style="font-style: italic;">NEW</span>
   <dd>
     if set to <b>true</b> then the framework will attempt to attach a fragment to all available host
     bundles which satisfy the fragment bundle's Fragment-Host constraint.  The default value is <b>false</b>.
   </dd>
-  <dt><a name="osgisupportsignatureverify"></a>osgi.support.signature.verify</dt>
+  <a name="osgisupportsignatureverify"></a>osgi.support.signature.verify
   <dd>This option has been deprecated.  Use <a href="#osgisignedcontentsupport">osgi.signedcontent.support</a> instead.
   </dd>
-  <dt><a name="osgisupportclasscertificate"></a>osgi.support.class.certificate</dt>
+  <a name="osgisupportclasscertificate"></a>osgi.support.class.certificate
   <dd>
    if set to <b>true</b> then the certificates available from a signed bundle are used when defining the classes from
    the signed bundle.  The default value is <b>true</b>.
    This option only takes effect when <a href="#osgisignedcontentsupport">osgi.signedcontent.support</a> is set
    to <b>certificate</b>.
   </dd>
-  <dt><a name="osgisyspath"></a>osgi.syspath</dt>
+  <a name="osgisyspath"></a>osgi.syspath
   <dd>set to the path where the eclipse OSGi Framework (org.eclipse.osgi) implementation
-  is located.  For example, &quot;&lt;eclipse install path&gt;/eclipse/plugins&quot;.
+  is located.  For example, &quot;<eclipse install path>/eclipse/plugins&quot;.
   This property is set when the Eclipse platform is started and is not intended by be
   set by the user.</dd>
-  <dt><a name="osgiuserarea"></a>osgi.user.area {-user}</dt>
+  <a name="osgiuserarea"></a>osgi.user.area {-user}
   <dd>the location of the user area. The user area contains data (e.g., preferences)
     specific to the OS user and independent of any Eclipse install, configuration
     or instance. See the section on <a href="#locations">locations</a> for more
     details.</dd>
-  <dt><a name="osgiuserareadefault" id="osgiuserareadefault"></a>osgi.user.area.default</dt>
+  <a name="osgiuserareadefault" id="osgiuserareadefault"></a>osgi.user.area.default
   <dd>the default location of the user area. The user area contains data (e.g.,
     preferences) specific to the OS user and independent of any Eclipse install,
     configuration
     or instance. This value (i.e., the default setting) is only used if no value
     for the osgi.user.area is set. See the section on <a href="#locations">locations</a> for
     more details.</dd>
-  <dt><a name="osgiws"></a>osgi.ws {-ws}</dt>
+  <a name="osgiws"></a>osgi.ws {-ws}
   <dd>the window system value. The value should be one of the Eclipse window
     system names known to Eclipse (e.g., win32, motif, ...).</dd>
-</dl>
 
 ## Environment Variables
 <p>The following environment variables are used by the Eclipse runtime. They may have
@@ -837,7 +831,7 @@ will force eclipse to reinitialize these caches.</dd>
   section). Users are free to use either command line or environment variables to specify
   a value.</p>
 <dl>
-  <dt><a name="env.eclipsekeyring"></a>ECLIPSE_KEYRING</dt>
+  <a name="env.eclipsekeyring"></a>ECLIPSE_KEYRING
   <dd>Set to override the location of the default secure storage. See the
     <a href="#eclipsekeyring">-eclipse.keyring</a> command line option.</dd>
 
@@ -848,30 +842,30 @@ will force eclipse to reinitialize these caches.</dd>
   the scope of data sharing and visibility. Eclipse defines the following notions
   of location:</p>
 <dl>
-    <dt>User (-user) {<a href="#osgiuserarea">osgi.user.area</a>} [@none, @noDefault, @user.home, @user.dir,
-      filepath, url]</dt>
-    <dd>User locations are specific to, go figure, users. Typically the user
+    User (-user) {<a href="#osgiuserarea">osgi.user.area</a>} [@none, @noDefault, @user.home, @user.dir,
+      filepath, url]
+  * User locations are specific to, go figure, users. Typically the user
       location is based on the value of the Java <code>user.home</code> system
       property but this can be overridden. Information such as user scoped preferences
       and login information may be found in the user location.</dd>
-    <dt>Install (-install) {osgi.install.area} [@launcher.dir, @user.home, @user.dir, filepath,
-      url]</dt>
-    <dd>An install location is where Eclipse itself is installed. In practice
+    Install (-install) {osgi.install.area} [@launcher.dir, @user.home, @user.dir, filepath,
+      url]
+  * An install location is where Eclipse itself is installed. In practice
       this location is the directory (typically &quot;eclipse&quot;) which is
       the parent of the eclipse.exe being run or the plugins directory containing the org.eclipse.equinox.launcher bundle. This location should
       be considered read-only to normal users as an install may be shared by
       many users. It is possible to set the install location and decouple eclipse.exe
       from the rest of Eclipse.</dd>
-    <dt>Configuration (-configuration) {osgi.configuration.area} [@none, @noDefault,
-      @user.home, @user.dir, filepath, url]</dt>
-    <dd>Configuration locations contain files which identify and manage the (sub)set
+    Configuration (-configuration) {osgi.configuration.area} [@none, @noDefault,
+      @user.home, @user.dir, filepath, url]
+  * Configuration locations contain files which identify and manage the (sub)set
       of an install to run. As such, there may be many configurations per install.
       Installs may come with a default configuration area but typical startup
       scenarios involve the runtime attempting to find a more writable configuration
       location. </dd>
-    <dt>Instance (-data) {osgi.instance.area} [@none, @noDefault, @user.home,
-      @user.dir, filepath, url]</dt>
-    <dd>Instance locations contain user-defined data artifacts. For example,
+    Instance (-data) {osgi.instance.area} [@none, @noDefault, @user.home,
+      @user.dir, filepath, url]
+  * Instance locations contain user-defined data artifacts. For example,
       the Resources plug-in uses the instance area as the workspace location
       and thus the default home for projects. Other plugins are free to write
       whatever files they like in this location.</dd>
@@ -893,20 +887,20 @@ will force eclipse to reinitialize these caches.</dd>
   if the instance area is not defined. It is up to plug-in developers to choose
   the setups they support and design their functionality accordingly.</p>
 <dl>
-    <dt>@none</dt>
-    <dd>Indicates that the corresponding location should never be set either
+    @none
+  * Indicates that the corresponding location should never be set either
       explicitly or to its default value. For example, an RCP style application
       which has no user data may use osgi.instance.area=@none to prevent
       extraneous files being written to disk. @none must not be followed by any
       additional path segments.</dd>
-    <dt>@noDefault</dt>
-    <dd>Forces a location to be undefined or explicitly defined (i.e., Eclipse
+    @noDefault
+  * Forces a location to be undefined or explicitly defined (i.e., Eclipse
       will not automatically compute a default value). This is useful where you
       want to allow for data in the corresponding location but the Eclipse default
       value is not appropriate. @noDefault must not be followed by any
       additional path segments.</dd>
-    <dt>@launcher.dir</dt>
-    <dd>Directs Eclipse to compute a location value relative to the directory
+    @launcher.dir
+  * Directs Eclipse to compute a location value relative to the directory
       containing the Eclipse launcher binary. @launcher.dir can be followed
       by additional path segments. In all cases, the string &quot;@location.dir&quot; is
       simply replaced with the parent directory of the path pointed to by the Java
@@ -917,8 +911,8 @@ will force eclipse to reinitialize these caches.</dd>
       &nbsp;&nbsp;&nbsp;&nbsp;file:/home/bob/eclipse-product/linux/gtk/x86_64/../../../pool<br>
       if the &quot;eclipse.launcher&quot; property is set to
       &quot;/home/bob/eclipse-product/linux/gtk/x86_64/eclipse&quot;.</dd>
-    <dt>@user.home</dt>
-    <dd>Directs Eclipse to compute a location value relative to the user's home
+    @user.home
+  * Directs Eclipse to compute a location value relative to the user's home
       directory. @user.home can be followed
       by additional path segments. In all cases, the string &quot;@user.home&quot; is
       simply replaced with the value of the Java &quot;user.home&quot; System
@@ -927,8 +921,8 @@ will force eclipse to reinitialize these caches.</dd>
       results in a value of
       <br>
       &nbsp;&nbsp;&nbsp;&nbsp;file:/users/bob/myWorkspace</dd>
-    <dt>@user.dir</dt>
-    <dd>Directs Eclipse to compute a location value relative to the current working
+    @user.dir
+  * Directs Eclipse to compute a location value relative to the current working
       directory. @user.dir can be followed
       by additional path segments. In all cases, the string &quot;@user.dir&quot; is
       simply replaced with the value of the Java &quot;user.dir&quot; System
