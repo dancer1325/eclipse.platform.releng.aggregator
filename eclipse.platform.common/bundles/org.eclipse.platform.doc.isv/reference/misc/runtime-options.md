@@ -31,14 +31,12 @@
 * -consoleLog (Runtime)
   * == <a href="#eclipseconsolelog">eclipse.consoleLog</a> to
       &quot;true&quot;</dd>
-* -data <location>    (OSGi)<br>
-  
+* -data <location>    (OSGi)
   * == <a href="#osgiinstancearea">osgi.instance.area</a>
       to <location></dd>
-* -debug [options file] (OSGi)
-  *  == <a href="#osgidebug">osgi.debug</a> to [options
-      file] or the empty string to simply enable debug (i.e., if the options file
-      location is not specified)</dd>
+* `-debug [options file] (OSGi)`
+  * == `osgi.debug`
+  * if == `""` -> enable debug
 * -dev [entries] (OSGi)
   * == <a href="#osgidev">osgi.dev</a> to [entries] or
       the empty string to simply enable dev mode (i.e., if entries are not specified)</dd>
@@ -417,28 +415,33 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
       The minimum value allowed is 10.  Any value less than 10 will disable the
       bundle file limit, making the the number of jar files the framework
       keeps open unlimited.  By default the value is 100.</dd>
-  <a name="osgibundles"></a>osgi.bundles
-  <dd>The comma-separated list of bundles which are automatically installed
-    and optionally started
-     once the system is up and running. Each entry is of the form:<br>
-	 <pre>    <URL | simple bundle location>[@ [<start-level>] [&quot;:start&quot;]]</pre>
-     The start-level indicates the OSGi start level at which the bundle should
-     run. If the start-level (>0 integer) is omitted then the framework will use the
-     default start level for the bundle. If the &quot;start&quot; tag is added
-     then the bundle will be marked as started after being installed.
-     Simple bundle locations are interepreted as relative to the framework's
-     parent directory.  If the location is not a fully qualified path or URL then a search is done
-     to find the highest version available.  Note that the reference: protocol can only be used to refer
-     to content specified by a file: URL (e.g. reference:file:/path/to/mybundle_1.0.0.jar).
-     If the bundle is a directory bundle then using a file: URL without the use of reference: is not
-     supported (e.g. file:/path/to/myDirectoryBundle_1.0.0/ must use reference:file:/path/to/myDirectoryBundle_1.0.0/)
-    </dd>
-  <a name="osgibundlesdefaultStartLevel"></a>osgi.bundles.defaultStartLevel
-  <dd>this is the startlevel that all bundles will be set to if installed by Eclipse Update.
-  Bundles which are specified on the <a href="#osgibundles">osgi.bundles</a> list can specify a particular startlevel.
-  If they do not specify a startlevel then they default to the value of
-  osgi.bundles.defaultStartLevel.  The default value of osgi.bundles.defaultStartLevel is 4.</dd>
-  <a name="osgicompatibilitybootdelegation" id="osgicompatibilitybootdelegation"></a>osgi.compatibility.bootdelegation
+      
+* `osgi.bundles`
+  * == `bundle1, bundle2, bundle3, ...`
+    * `bundlei` == `<URL | simpleBundleLocation>[@ [<start-level>] [":start"]]`
+      * 👀`<start-level>`
+        * == OSGi start level | bundle should run 👀
+        * if it's omitted -> framework -- will use the -- default start level
+      * if `start` is added -> | AFTER being installed, bundle -- will be marked as -- started 
+      * `simpleBundleLocation`
+        * == -- relative to the -- framework's parent directory
+        * -> search -- finds the -- highest version available
+        * `reference:`
+          * ONLY -- can be used to refer a -- file
+            * _Example:_ `reference:file:/path/to/mybundle_1.0.0.jar`
+          * if the bundle is a directory -> `file:` NOT supported, use `reference:file:`
+            * _Example:_ ❌`file:/path/to/myDirectoryBundle_1.0.0/` NOT❌, use `reference:file:/path/to/myDirectoryBundle_1.0.0/` 
+  * == bundles / 
+    * | system is up & running,
+      * AUTOMATICALLY installed
+      * OPTIONALLY started
+
+* `osgi.bundles.defaultStartLevel`
+  * == bundle's start-level | bundles -- installed by -- Eclipse Update
+  * bundles / specified | `osgi.bundles` -> can specify a particular startlevel
+  * 👀by default, == 4 👀
+
+* `osgi.compatibility.bootdelegation`
   <dd>if set to &quot;true&quot; then the parent (boot by default) classloader is delegated to as a last resort if a
   class or resource cannot be found.  The default value is &quot;true&quot;.</dd>
   <a name="osgicompatibilityerrorOnFailedStart" id="osgicompatibilityerrorOnFailedStart"></a>osgi.compatibility.errorOnFailedStart
@@ -539,23 +542,22 @@ in <a href="#eclipsevm">eclipse.vm</a>.</dd>
     It is recommended to set osgi.dataAreaRequiresExplicitInit=true.
     See <a href="#osgiinstancearea">osgi.instance.area</a>.
   </dd>
-  <a name="osgidebug"></a>osgi.debug {-debug}
-  <dd>if set to a non-null value, the platform is put in debug mode. If the value
-    is a string it is interpreted as the location of the
-    .options file. This file indicates what debug
-    points are
-    available
-    for a plug-in and whether or not they are enabled. If a location is not specified,
-  the platform searches for the .options file under the install directory.</dd>
-  <a name="osgidev"></a>osgi.dev {-dev}
-  <dd>if set to the empty string, dev mode is simply turned on. This property
-    may also be set to a comma-separated class path entries
-    which are added to
-    the class
-    path of each
-    plug-in or a URL to a Java properties file containing custom classpath additions
-    for a set of plug-ins. For each plug-in requiring a customized dev time classpath
-    the file will contain an entry of the form<br>
+ 
+* `osgi.debug {-debug}`
+  * if
+    * == NON-null value -> platform enabled in debug mode
+    * == string -> ".options" file's location
+      * see [here](https://wiki.eclipse.org/FAQ_How_do_I_use_the_platform_debug_tracing_facility)
+      * == debug points AVAILABLE | plug-in
+* `osgi.dev {-dev}`
+    <dd>if set to the empty string, dev mode is simply turned on. This property
+      may also be set to a comma-separated class path entries
+      which are added to
+      the class
+      path of each
+      plug-in or a URL to a Java properties file containing custom classpath additions
+      for a set of plug-ins. For each plug-in requiring a customized dev time classpath
+      the file will contain an entry of the form<br>
 <pre>    <plug-in id>=<comma separated list of classpath entries to add></pre>
     where plug-in id &quot;*&quot; matches any plug-in not otherwise mentioned.</dd>
   <a name="osgifilepermissionscommand"></a>osgi.filepermissions.command
